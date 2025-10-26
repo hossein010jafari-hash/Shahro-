@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شهرو - سایت جامعه</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- نوار بالایی -->
+    <header class="header">
+        <div class="header-right">
+            <div class="auth-buttons">
+                <button class="login-btn" onclick="openLoginModal()">ورود</button>
+                <button class="register-btn" onclick="openRegisterModal()">ثبت نام</button>
+            </div>
+        </div>
+        
+        <div class="header-left">
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- منوی کشویی -->
+    <nav class="sidebar" id="sidebar">
+        <ul class="menu">
+            <li><a href="#home">خانه</a></li>
+            <li><a href="#stories">داستان</a></li>
+            <li><a href="#photos">عکس</a></li>
+            <li><a href="#forum">انجمن</a></li>
+            <li><a href="#submit-story">ارسال داستان</a></li>
+            <li><a href="#chat">چت</a></li>
+            <li><a href="#webmasters">وب کاران</a></li>
+            <li><a href="#users">کاربران</a></li>
+        </ul>
+    </nav>
+
+    <!-- محتوای اصلی -->
+    <main class="main-content" id="mainContent">
+        <section id="home" class="section active">
+            <div class="welcome-section">
+                <h1>به سایت شهرو خوش آمدید</h1>
+                <p>در این سایت گلچینی از داستان‌ها و عکس‌ها را می‌بینید. همچنین با عضویت در شهرو می‌توانید در انجمن شهرو گفتگو کنید و چت کنید.</p>
+                
+                <div class="warning-box">
+                    <p>تجاوز به حریم خصوصی مردم، سوء استفاده و نقض حقوق مولفان جایی در این سایت ندارند.</p>
+                    <p>امیدواریم از شهرو لذت ببرید.</p>
+                    <p class="age-warning">لطفاً اگر به سن قانونی نرسیده‌اید این سایت را ترک کنید</p>
+                    <p class="age-warning">Please Leave this site if you are under 18</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- سایر بخش‌ها -->
+        <section id="stories" class="section">
+            <h2>داستان‌ها</h2>
+            <p>این بخش برای نمایش داستان‌ها است.</p>
+        </section>
+
+        <section id="photos" class="section">
+            <h2>عکس‌ها</h2>
+            <p>این بخش برای نمایش عکس‌ها است.</p>
+        </section>
+
+        <section id="forum" class="section">
+            <h2>انجمن</h2>
+            <p>این بخش برای گفتگو در انجمن است.</p>
+        </section>
+
+        <section id="submit-story" class="section">
+            <h2>ارسال داستان</h2>
+            <p>این بخش برای ارسال داستان جدید است.</p>
+        </section>
+
+        <section id="chat" class="section">
+            <h2>چت</h2>
+            <p>این بخش برای چت کردن است.</p>
+        </section>
+
+        <section id="webmasters" class="section">
+            <h2>وب کاران</h2>
+            <p>این بخش برای مدیران وب است.</p>
+        </section>
+
+        <section id="users" class="section">
+            <h2>کاربران</h2>
+            <p>این بخش برای مدیریت کاربران است.</p>
+        </section>
+    </main>
+
+    <!-- پاورقی -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#home">خانه</a>
+            <a href="#rules">قوانین</a>
+            <a href="#guide">راهنما</a>
+            <a href="#privacy">حریم خصوصی</a>
+            <a href="#contact">تماس</a>
+        </div>
+    </footer>
+
+    <!-- مودال ورود -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2>ورود به شهرو</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">نام کاربری</label>
+                    <input type="text" id="username" name="username" required 
+                           pattern="[a-zA-Z@]+" title="نام کاربری باید به انگلیسی و شامل @ باشد">
+                </div>
+                <div class="form-group">
+                    <label for="password">گذرواژه</label>
+                    <input type="password" id="password" name="password" required
+                           pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+                           title="گذرواژه باید شامل حروف، اعداد و نمادها باشد">
+                </div>
+                <div class="form-group">
+                    <label>کپچا: <strong id="loginCaptcha">EFY23</strong></label>
+                    <input type="text" id="loginCaptchaInput" required>
+                </div>
+                <button type="submit" class="submit-btn">ورود</button>
+            </form>
+            <div class="form-links">
+                <a href="#forgot-password">گذرواژه خود را فراموش کرده‌اید؟ بازنشانی کنید</a>
+                <a href="#" onclick="closeLoginModal(); openRegisterModal()">ایجاد حساب جدید</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- مودال ثبت نام -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeRegisterModal()">&times;</span>
+            <h2>ثبت نام در شهرو</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="regUsername">نام کاربری</label>
+                    <input type="text" id="regUsername" name="username" required
+                           pattern="[a-zA-Z@]+" title="نام کاربری باید به انگلیسی و شامل @ باشد">
+                </div>
+                <div class="form-group">
+                    <label for="email">ایمیل</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">گذرواژه</label>
+                    <input type="password" id="regPassword" name="password" required
+                           pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+                           title="گذرواژه باید شامل حروف، اعداد و نمادها باشد">
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">تأیید گذرواژه</label>
+                    <input type="password" id="confirmPassword" required>
+                </div>
+                <div class="form-group">
+                    <label>کپچا: <strong id="registerCaptcha">TMAGO</strong></label>
+                    <input type="text" id="registerCaptchaInput" required>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="acceptRules" required>
+                    <label for="acceptRules">قوانین کاربری را خوانده‌ام و قبول دارم</label>
+                </div>
+                <button type="submit" class="submit-btn">ایجاد حساب</button>
+            </form>
+            <div class="form-links">
+                <a href="#" onclick="closeRegisterModal(); openLoginModal()">قبلاً ثبت نام کرده‌ام</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Tahoma', 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* هدر */
+.header {
+    background: #2c3e50;
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.login-btn, .register-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.login-btn {
+    background: #3498db;
+    color: white;
+}
+
+.register-btn {
+    background: #e74c3c;
+    color: white;
+}
+
+/* منوی همبرگری */
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    transition: 0.3s;
+}
+
+/* سایدبار */
+.sidebar {
+    position: fixed;
+    top: 60px;
+    right: -300px;
+    width: 250px;
+    height: calc(100vh - 60px);
+    background: #34495e;
+    transition: 0.3s;
+    z-index: 999;
+}
+
+.sidebar.active {
+    right: 0;
+}
+
+.menu {
+    list-style: none;
+    padding: 2rem 0;
+}
+
+.menu li a {
+    display: block;
+    padding: 1rem 2rem;
+    color: white;
+    text-decoration: none;
+    border-bottom: 1px solid #46627f;
+    transition: 0.3s;
+}
+
+.menu li a:hover {
+    background: #46627f;
+}
+
+/* محتوای اصلی */
+.main-content {
+    margin-top: 60px;
+    padding: 2rem;
+    min-height: calc(100vh - 120px);
+}
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+.welcome-section {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.welcome-section h1 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+}
+
+.warning-box {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 10px;
+    padding: 2rem;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.age-warning {
+    color: #e74c3c;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+/* فوتر */
+.footer {
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: #bdc3c7;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+/* مودال */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #999;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.checkbox-group input {
+    width: auto;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.form-links {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.form-links a {
+    color: #3498db;
+    text-decoration: none;
+    display: block;
+    margin: 0.5rem 0;
+}
+
+/* ریسپانسیو */
+@media (max-width: 768px) {
+    .header {
+        padding: 1rem;
+    }
+    
+    .main-content {
+        padding: 1rem;
+    }
+    
+    .modal-content {
+        margin: 10% auto;
+        width: 95%;
+    }
+    
+    .footer-links {
+        gap: 1rem;
+    }
+}
+// مدیریت منوی کشویی
+const menuToggle = document.getElementById('menuToggle');
+const sidebar = document.getElementById('sidebar');
+const mainContent = document.getElementById('mainContent');
+
+menuToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('active');
+});
+
+// بستن منو هنگام کلیک خارج از آن
+document.addEventListener('click', (e) => {
+    if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
+        sidebar.classList.remove('active');
+    }
+});
+
+// مدیریت بخش‌ها
+function showSection(sectionId) {
+    // مخفی کردن همه بخش‌ها
+    document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+    });
+    
+    // نمایش بخش انتخاب شده
+    const targetSection = document.getElementById(sectionId);
+    if (targetSection) {
+        targetSection.classList.add('active');
+    }
+    
+    // بستن منو در موبایل
+    sidebar.classList.remove('active');
+}
+
+// مدیریت لینک‌های منو
+document.querySelectorAll('.menu a').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const sectionId = link.getAttribute('href').substring(1);
+        showSection(sectionId);
+    });
+});
+
+// مدیریت مودال‌ها
+function openLoginModal() {
+    document.getElementById('loginModal').style.display = 'block';
+    generateNewCaptcha('loginCaptcha');
+}
+
+function closeLoginModal() {
+    document.getElementById('loginModal').style.display = 'none';
+}
+
+function openRegisterModal() {
+    document.getElementById('registerModal').style.display = 'block';
+    generateNewCaptcha('registerCaptcha');
+}
+
+function closeRegisterModal() {
+    document.getElementById('registerModal').style.display = 'none';
+}
+
+// بستن مودال با کلیک خارج از آن
+window.addEventListener('click', (e) => {
+    const loginModal = document.getElementById('loginModal');
+    const registerModal = document.getElementById('registerModal');
+    
+    if (e.target === loginModal) {
+        closeLoginModal();
+    }
+    if (e.target === registerModal) {
+        closeRegisterModal();
+    }
+});
+
+// تولید کپچا
+function generateNewCaptcha(elementId) {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let captcha = '';
+    for (let i = 0; i < 5; i++) {
+        captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    document.getElementById(elementId).textContent = captcha;
+}
+
+// مدیریت فرم ورود
+document.getElementById('loginForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const captchaInput = document.getElementById('loginCaptchaInput').value;
+    const captchaText = document.getElementById('loginCaptcha').textContent;
+    
+    if (captchaInput !== captchaText) {
+        alert('کپچا نادرست است!');
+        generateNewCaptcha('loginCaptcha');
+        return;
+    }
+    
+    alert('ورود موفقیت‌آمیز بود!');
+    closeLoginModal();
+    generateNewCaptcha('loginCaptcha');
+});
+
+// مدیریت فرم ثبت نام
+document.getElementById('registerForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const password = document.getElementById('regPassword').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const captchaInput = document.getElementById('registerCaptchaInput').value;
+    const captchaText = document.getElementById('registerCaptcha').textContent;
+    
+    if (password !== confirmPassword) {
+        alert('گذرواژه و تأیید گذرواژه مطابقت ندارند!');
+        return;
+    }
+    
+    if (captchaInput !== captchaText) {
+        alert('کپچا نادرست است!');
+        generateNewCaptcha('registerCaptcha');
+        return;
+    }
+    
+    if (!document.getElementById('acceptRules').checked) {
+        alert('لطفاً قوانین را قبول کنید!');
+        return;
+    }
+    
+    alert('ثبت نام موفقیت‌آمیز بود!');
+    closeRegisterModal();
+    generateNewCaptcha('registerCaptcha');
+});
+
+// بررسی تکراری نبودن نام کاربری (شبیه‌سازی)
+function checkUsernameAvailability(username) {
+    // اینجا باید با سرور چک شود
+    const takenUsernames = ['admin@', 'user@', 'test@'];
+    return !takenUsernames.includes(username);
+}
+
+// نمایش قوانین
+function showRules() {
+    const rules = `
+        قوانین استفاده از سایت شهرو:
+        
+        1. احترام به حقوق دیگر کاربران
+        2. عدم انتشار محتوای نامناسب
+        3. رعایت قوانین جمهوری اسلامی ایران
+        4. حفظ حریم خصوصی کاربران
+        5. عدم نقض حقوق مولفان
+        
+        با ثبت نام، این قوانین را می‌پذیرید.
+    `;
+    alert(rules);
+}
+
+// مقداردهی اولیه
+document.addEventListener('DOMContentLoaded', () => {
+    generateNewCaptcha('loginCaptcha');
+    generateNewCaptcha('registerCaptcha');
+});
